@@ -1,4 +1,5 @@
 const express   = require('express');
+const bodyParser = require('body-parser')
 
 const authRouter = require('./auth');
 const notesRouter = require('./notes');
@@ -10,8 +11,13 @@ const { authValidator } = require('../middleware/auth');
 
 const router    = express.Router();
 
-router.use('/auth', authRouter);
+// parse application/x-www-form-urlencoded
+router.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+router.use(bodyParser.json())
 
+router.use('/auth', authRouter);
+    
 // validate JWT To access the rest of the routes
 router.use('/', authValidator);
 router.use('/notes', notesRouter);

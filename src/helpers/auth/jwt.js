@@ -9,7 +9,7 @@ const sign = (data) => {
 }
 
 const verify = (payload) => {
-    const r = undefined;
+    const r = {};
     try {
         r.decoded = jwt.verify(payload, SECRET);
         r.err = null;

@@ -2,7 +2,7 @@ const { verify } = require('../helpers/auth/jwt');
 
 const authValidator = (req, res, next) => {
     const bearer = req.get('Authorization');
-    const tokens = bearer.split(',');
+    const tokens = bearer.split(' ');
     if (tokens.length != 2) {
         return res.send('invalid');
     }
