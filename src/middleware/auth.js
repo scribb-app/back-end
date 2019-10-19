@@ -10,7 +10,8 @@ const authValidator = (req, res, next) => {
     if (payload.err) {
         return res.send('not a valid JWT');
     }
-    res.locals.user = payload.decoded;
+    res.locals.user = payload.decoded.data;
+    res.locals.jwt = payload.decoded;
     next();
 }
 
