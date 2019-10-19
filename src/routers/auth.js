@@ -28,7 +28,8 @@ router.post('/sign-in', async (req, res) => {
         if (r.length != 1) {
             return res.status(404).send({ msg: 'invalid email or password' });
         }
-        const jwt = sign({ email });
+        // return res.send({ email, id: r[0]._id.toString() });
+        const jwt = sign({ email, id: r[0]._id.toString() });
         return res.status(200).send({ jwt });
     } catch(e) {
         return res.status(500).send(e);
