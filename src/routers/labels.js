@@ -16,7 +16,6 @@ router.get('/', async (req, res) => {
 
 router.post('/', (req, res) => {
     const creator = res.locals.user.id;
-    console.log(res.locals);
     const name = req.body.name;
     const label = new Labels();
     label.creator_id = creator;
@@ -26,7 +25,7 @@ router.post('/', (req, res) => {
     } catch(e) {
         return res.send(e);
     }
-    res.status(201).json(label.toJSON());
+    res.status(201).send(label);
 });
 
 module.exports = router;
